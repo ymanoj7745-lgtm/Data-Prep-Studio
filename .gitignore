@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+.venv*/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React build output
+Frontend/build/
+build/
+dist/
+
+# Local environment files
+.env
+*.env
+!.env.example
+
+# Local scratch/test files
+work/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

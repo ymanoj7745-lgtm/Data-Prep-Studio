@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0a;
+  --panel: #111111;
+  --panel-2: #18181b;
+  --code-bg: #000000;
+  --border: #27272a;
+  --border-active: #52525b;
+  --text: #fafafa;
+  --text-2: #a1a1aa;
+  --text-3: #71717a;
+  --accent: #e0613a;
+  --accent-hover: #f0714a;
+  --anomaly: #ef4444;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --syn-kw: #569cd6;
+  --syn-str: #ce9178;
+  --syn-fn: #dcdcaa;
+  --syn-comment: #6a9955;
+  --syn-num: #b5cea8;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+.font-display {
+  font-family: "IBM Plex Sans", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono,
+code,
+pre {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+
+/* Shadcn dark tokens override */
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 6.7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6.7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 15 74% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 9.4%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 9.4%;
+    --muted-foreground: 0 0% 63.1%;
+    --accent: 0 0% 9.4%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 15.3%;
+    --input: 240 5% 15.3%;
+    --ring: 15 74% 55%;
+    --radius: 0.25rem;
+    --chart-1: 15 74% 55%;
+    --chart-2: 210 100% 60%;
+    --chart-3: 158 64% 52%;
+    --chart-4: 43 96% 56%;
+    --chart-5: 275 80% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2f;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Grain overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+}
+
+/* Syntax highlighting for code recorder */
+.tok-kw { color: var(--syn-kw); }
+.tok-str { color: var(--syn-str); }
+.tok-fn { color: var(--syn-fn); }
+.tok-comment { color: var(--syn-comment); font-style: italic; }
+.tok-num { color: var(--syn-num); }
+.tok-op { color: #d4d4d4; }
+
+/* Data grid */
+.dp-grid {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+.dp-grid th,
+.dp-grid td {
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+.dp-grid thead th {
+  background: #141416;
+  color: var(--text);
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.dp-grid tbody tr:hover {
+  background: #141416;
+}
+
+.dashed-drop {
+  border: 1px dashed var(--border);
+  transition: border-color 120ms, background-color 120ms;
+}
+.dashed-drop:hover,
+.dashed-drop.drag {
+  border-color: var(--accent);
+  background: rgba(224, 97, 58, 0.03);
+}
+
+.pill-btn {
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+  transition: color 120ms, background-color 120ms, border-color 120ms;
+}
+.pill-btn:hover {
+  border-color: var(--border-active);
+  background: var(--panel-2);
+}
+.pill-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+.pill-btn.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.pill-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.hairline { border: 1px solid var(--border); }
+
+.recharts-cartesian-axis-tick text {
+  fill: var(--text-3) !important;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+}
